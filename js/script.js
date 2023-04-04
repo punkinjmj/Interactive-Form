@@ -18,6 +18,7 @@ const creditCard = document.getElementById("credit-card");
 const paypal = document.getElementById("paypal");
 const bitcoin = document.getElementById("bitcoin");
 const activityCheckboxes = document.querySelectorAll('#activities input[type="checkbox"]');
+const activityBorder = document.getElementById("activities-box");
 
 
 // inital setup
@@ -106,69 +107,73 @@ form.addEventListener("submit", (e) => {
     const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const cardRegex = /^[0-9]{16,19}$/;
-    const zipRegex = /^.{5}$/;
-    const cvvRegex = /^\d{3,4}$/;
+    const zipRegex = /^\d{5}$/;
+    const cvvRegex = /^\d{3}$/;
 
     if(!nameRegex.test(nameValue)) {
         e.preventDefault();
         Username.parentElement.classList.add("not-valid");
         Username.parentElement.classList.remove("valid");
-        Username.parentElement.lastElementChild.classList.remove("hint");
+        Username.parentElement.lastElementChild.style.display = "block";
     } else {
         Username.parentElement.classList.remove("not-valid");
         Username.parentElement.classList.add("valid");
-        Username.parentElement.lastElementChild.classList.add("hint");
+        Username.parentElement.lastElementChild.style.display = "none";
     }
 
     if (!emailRegex.test(emailValue)) {
         e.preventDefault();
         email.parentElement.classList.add("not-valid");
         email.parentElement.classList.remove("valid");
-        email.parentElement.lastElementChild.classList.remove("hint");
+        email.parentElement.lastElementChild.style.display = "block";
     } else {
         email.parentElement.classList.remove("not-valid");
         email.parentElement.classList.add("valid");
-        email.parentElement.lastElementChild.classList.add("hint");
+        email.parentElement.lastElementChild.style.display = "none";
     }
     
     if (!cardRegex.test(cardValue)) {
         e.preventDefault();
         cardNum.parentElement.classList.add("not-valid");
         cardNum.parentElement.classList.remove("valid");
-        cardNum.parentElement.lastElementChild.classList.remove("hint");
+        cardNum.parentElement.lastElementChild.style.display = "block";
     } else {
         cardNum.parentElement.classList.remove("not-valid");
         cardNum.parentElement.classList.add("valid");
-        cardNum.parentElement.lastElementChild.classList.add("hint");
+        cardNum.parentElement.lastElementChild.style.display = "none";
     }
 
     if (!zipRegex.test(zipValue)) {
         e.preventDefault();
         zipCode.parentElement.classList.add("not-valid");
         zipCode.parentElement.classList.remove("valid");
-        zipCode.parentElement.lastElementChild.classList.add("hint");
+        zipCode.parentElement.lastElementChild.style.display = "block";
     } else {
         zipCode.parentElement.classList.remove("not-valid");
         zipCode.parentElement.classList.add("valid");
-        zipCode.parentElement.lastElementChild.classList.add("hint");
+        zipCode.parentElement.lastElementChild.style.display = "none";
     }
 
     if (!cvvRegex.test(cvvValue)) {
         e.preventDefault();
         CVV.parentElement.classList.add("not-valid");
         CVV.parentElement.classList.remove("valid");
-        CVV.parentElement.lastElementChild.classList.remove("hint");
+        CVV.parentElement.lastElementChild.style.display = "block";
     } else {
         CVV.parentElement.classList.remove("not-valid");
         CVV.parentElement.classList.add("valid");
-        CVV.parentElement.lastElementChild.classList.add("hint");
+        CVV.parentElement.lastElementChild.style.display = "none";
     }
 
    if (activitiesValue === false) {
     e.preventDefault();
-    activities.lastElementChild.classList.remove("hint");
+    activities.classList.add("not-valid");
+    activities.classList.remove("valid");
+    activities.lastElementChild.style.display = "block";
    } else {
-    activities.lastElementChild.classList.add("hint");
+    activities.classList.remove("not-valid");
+    activities.classList.add("valid");
+    activities.lastElementChild.style.display = "none";
    }   
 });
 
