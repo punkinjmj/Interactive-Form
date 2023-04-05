@@ -106,7 +106,7 @@ form.addEventListener("submit", (e) => {
 
     const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const cardRegex = /^[0-9]{16,19}$/;
+    const cardRegex = /^\d{13,16}$/;
     const zipRegex = /^\d{5}$/;
     const cvvRegex = /^\d{3}$/;
 
@@ -132,7 +132,7 @@ form.addEventListener("submit", (e) => {
         email.parentElement.lastElementChild.style.display = "none";
     }
     
-    if (!cardRegex.test(cardValue)) {
+    if (!cardRegex.test(cardValue) && payment.value == "credit-card") {
         e.preventDefault();
         cardNum.parentElement.classList.add("not-valid");
         cardNum.parentElement.classList.remove("valid");
@@ -143,7 +143,7 @@ form.addEventListener("submit", (e) => {
         cardNum.parentElement.lastElementChild.style.display = "none";
     }
 
-    if (!zipRegex.test(zipValue)) {
+    if (!zipRegex.test(zipValue) && payment.value == "credit-card") {
         e.preventDefault();
         zipCode.parentElement.classList.add("not-valid");
         zipCode.parentElement.classList.remove("valid");
@@ -154,7 +154,7 @@ form.addEventListener("submit", (e) => {
         zipCode.parentElement.lastElementChild.style.display = "none";
     }
 
-    if (!cvvRegex.test(cvvValue)) {
+    if (!cvvRegex.test(cvvValue) && payment.value == "credit-card") {
         e.preventDefault();
         CVV.parentElement.classList.add("not-valid");
         CVV.parentElement.classList.remove("valid");
